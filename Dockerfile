@@ -30,7 +30,6 @@ RUN cd /tmp/ \
  && mv /tmp/blog-source-configs/sup/nginx.conf /etc/supervisor/conf.d/nginx.conf \
  && mv /tmp/blog-source-configs/sup/hhvm.conf  /etc/supervisor/conf.d/hhvm.conf \
  && mv /tmp/blog-source-configs/sup/supervisord.conf /etc/supervisor/supervisord.conf \
- && /usr/share/hhvm/install_fastcgi.sh \
  && rm -rf /tmp/blog-source-configs        
 
 EXPOSE 80 443
