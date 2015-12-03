@@ -24,14 +24,15 @@ COPY /keys /etc/nginx/ssl/
 
 RUN cd /tmp/ \ 
  && git clone https://github.com/moushegh/blog-source-configs.git \
- && mv /tmp/blog-source-configs/nginx /etc/ \
- && mv /tmp/blog-source-configs/www   /var/    \
+ && cp -r /tmp/blog-source-configs/nginx /etc/ \
+ && cp -r /tmp/blog-source-configs/www   /var/    \
  && mv /tmp/blog-source-configs/hhvm.ini /etc/hhvm/server.ini \
  && mv /tmp/blog-source-configs/sup/nginx.conf /etc/supervisor/conf.d/nginx.conf \
  && mv /tmp/blog-source-configs/sup/hhvm.conf  /etc/supervisor/conf.d/hhvm.conf \
+ && mv /tmp/blog-source-configs/sup/supervisord.conf /etc/supervisor/supervisord.conf \
  && /usr/share/hhvm/install_fastcgi.sh \
  && rm -rf /tmp/blog-source-configs        
 
 EXPOSE 80 443
 
-CMD ["service", "supervisor", "start"]
+CMD ["/etc/init.d/supervisor", "start"]
