@@ -20,8 +20,6 @@ RUN rm -rf /var/www \
  && rm -rf /etc/nginx/ \
  && rm -rf /etc/hhvm/server.ini
 
-COPY /keys /etc/nginx/ssl/
-
 RUN cd /tmp/ \ 
  && git clone https://github.com/moushegh/blog-source-configs.git \
  && cp -r /tmp/blog-source-configs/nginx /etc/ \
@@ -32,6 +30,6 @@ RUN cd /tmp/ \
  && mv /tmp/blog-source-configs/sup/supervisord.conf /etc/supervisor/supervisord.conf \
  && rm -rf /tmp/blog-source-configs        
 
-EXPOSE 80 443
+EXPOSE 80
 
 CMD ["/etc/init.d/supervisor", "start"]
