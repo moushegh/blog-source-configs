@@ -17,14 +17,15 @@ RUN apt-get update \
  && apt-get install -y ca-certificates nginx hhvm git 
 
 RUN rm -rf /var/www \
- && rm -rf  /etc/nginx/ /etc/hhvm/server.ini
+ && rm -rf /etc/nginx/ \
+ && rm -rf /etc/hhvm/server.ini
 
 COPY /keys /etc/nginx/ssl/
 
 RUN cd /tmp/ \ 
  && git clone https://github.com/moushegh/blog-source-configs.git \
- && mv /tmp/blog-source-configs/nginx /etc/nginx/ \
- && mv /tmp/blog-source-configs/www   /var/www    \
+ && mv /tmp/blog-source-configs/nginx /etc/ \
+ && mv /tmp/blog-source-configs/www   /var/    \
  && mv /tmp/blog-source-configs/hhvm.ini /etc/hhvm/server.ini \
  && mv /tmp/blog-source-configs/sup/nginx.conf /etc/supervisor/conf.d/nginx.conf \
  && mv /tmp/blog-source-configs/sup/hhvm.conf  /etc/supervisor/conf.d/hhvm.conf \
