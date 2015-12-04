@@ -16,7 +16,7 @@ RUN apt-get update \
  && apt-get install -y ca-certificates nginx php5-fpm php5-memcached php5-mysql php5-mcrypt php5-json php5-gd php5-curl git 
 
 RUN rm -rf /var/www \
- && rm -rf /etc/nginx/ \
+ && rm -rf /etc/nginx/ 
 
 RUN cd /tmp/ \ 
  && git clone https://github.com/moushegh/blog-source-configs.git \
