@@ -22,3 +22,4 @@ sed -i "s@getenv('NONCE_SALT)@'$NONCE_SALT'@" $LOC/wp-config.php
 
 echo "Starting supervisor"
 /etc/init.d/supervisor start
+

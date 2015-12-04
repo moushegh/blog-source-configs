@@ -25,8 +25,8 @@ RUN cd /tmp/ \
  && mv /tmp/blog-source-configs/sup/nginx.conf /etc/supervisor/conf.d/nginx.conf \
  && mv /tmp/blog-source-configs/sup/php-fpm.conf  /etc/supervisor/conf.d/php-fpm.conf \
  && mv /tmp/blog-source-configs/sup/supervisord.conf /etc/supervisor/supervisord.conf \
- && chmod -R 33:33 /var/www \
- & rm -rf /tmp/blog-source-configs        
+ && chown -R 33:33 /var/www \
+ && rm -rf /tmp/blog-source-configs        
 
 ADD run.sh /run.sh
 RUN chmod +x run.sh
