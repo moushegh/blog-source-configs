@@ -10,23 +10,20 @@ RUN apt-get update \
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 
 RUN add-apt-repository "deb http://nginx.org/packages/ubuntu $(lsb_release -sc) nginx" 
-RUN add-apt-repository "deb http://dl.hhvm.com/ubuntu $(lsb_release -sc) main" 
 
 
 RUN apt-get update \
- && apt-get install -y ca-certificates nginx hhvm git 
+ && apt-get install -y ca-certificates nginx php5-fpm php5-memcached php5-mysql php5-mcrypt php5-json php5-gd php5-curl git 
 
 RUN rm -rf /var/www \
  && rm -rf /etc/nginx/ \
- && rm -rf /etc/hhvm/server.ini
 
 RUN cd /tmp/ \ 
  && git clone https://github.com/moushegh/blog-source-configs.git \
  && cp -r /tmp/blog-source-configs/nginx /etc/ \
  && cp -r /tmp/blog-source-configs/www   /var/    \
- && mv /tmp/blog-source-configs/hhvm.ini /etc/hhvm/server.ini \
  && mv /tmp/blog-source-configs/sup/nginx.conf /etc/supervisor/conf.d/nginx.conf \
- && mv /tmp/blog-source-configs/sup/hhvm.conf  /etc/supervisor/conf.d/hhvm.conf \
+ && mv /tmp/blog-source-configs/sup/php-fpm.conf  /etc/supervisor/conf.d/php-fpm.conf \
  && mv /tmp/blog-source-configs/sup/supervisord.conf /etc/supervisor/supervisord.conf \
  && rm -rf /tmp/blog-source-configs        
 
