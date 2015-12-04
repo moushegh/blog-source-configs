@@ -27,6 +27,9 @@ RUN cd /tmp/ \
  && mv /tmp/blog-source-configs/sup/supervisord.conf /etc/supervisor/supervisord.conf \
  && rm -rf /tmp/blog-source-configs        
 
+ADD run.sh /run.sh
+RUN chmod +x /run.sh
+
 EXPOSE 80
 
-CMD ["/etc/init.d/supervisor", "start"]
+CMD ["/run.sh"]
